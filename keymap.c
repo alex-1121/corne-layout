@@ -38,7 +38,7 @@ enum layers {
 #define NAV        MO(_NAV)
 #define MEDIA      MO(_MEDIA)
 
-enum custom_keycodesn {
+enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   ADJUST,
 };
