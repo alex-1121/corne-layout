@@ -40,6 +40,7 @@ enum layers {
 
 enum custom_keycodesn {
   QWERTY = SAFE_RANGE,
+  ADJUST,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -51,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      //|------+------+------+------+------+------|                |------+------+-------+------+-------+--------|
        KC_LSFT,  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,                   KC_N,  KC_M,KC_COMM,KC_DOT,KC_SLSH,LALT_T(KC_ENT),
      //|------+------+------+------+------+------+------|  |------+------+------+-------+------+-------+--------|
-                                       NUM, KC_LGUI, SYM,   KC_SPC,   NAV, MEDIA
+                                   KC_LALT, KC_LGUI, NUM,   KC_SPC, SYM, NAV
                                  //`--------------------'  `--------------------'
   ),
 
@@ -122,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 int RGB_current_mode;
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, _NUM, _MEDIA, _ADJUST);
+    return update_tri_layer_state(state, _NUM, _SYM, _ADJUST);
 }
 
 // Setting ADJUST layer RGB back to default
@@ -389,31 +390,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //          layer_off(_ADJUST);
 //        }
 //        return false;
-//    case KC_RACL:
-//        if (record->event.pressed) {
-//          my_colon_timer = timer_read();
-//          register_code(KC_RALT);
-//        } else {
-//          unregister_code(KC_RALT);
-//          if (timer_elapsed(my_colon_timer) < TAPPING_TERM) {
-//            SEND_STRING(":"); // Change the character(s) to be sent on tap here
-//          }
-//        }
-//        return false;
-//    case RGBRST:
-//      #ifdef RGBLIGHT_ENABLE
-//        if (record->event.pressed) {
-//          eeconfig_update_rgblight_default();
-//          rgblight_enable();
-//          RGB_current_mode = rgblight_config.mode;
-//        }
-//      #endif
-//      #ifdef RGB_MATRIX_ENABLE
-//        if (record->event.pressed) {
-//          eeconfig_update_rgb_matrix_default();
-//          rgb_matrix_enable();
-//        }
-//      #endif
 //      break;
 //  }
   return true;
